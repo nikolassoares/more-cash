@@ -21,9 +21,6 @@ export class MockBackendService implements HttpInterceptor {
             const data = req.body;
 
             const percentage = data.value * (data.fees / 100);
-            console.log(data.value , percentage);
-            
-
             data.id = uuidv4();
             data.value = parseFloat(data.value);
             data.total = parseFloat(data.value) + percentage;

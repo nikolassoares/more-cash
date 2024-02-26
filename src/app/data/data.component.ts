@@ -43,12 +43,10 @@ export class DataComponent implements OnInit {
   }
 
   onConfirmAction() {
-    console.log('Confirm button clicked!');
     this.isHighlighted = false;
     this.createItem();
   }
   onCancelAction() {
-    console.log('Cancel button clicked!');
     this.isHighlighted = false;
   }
 
@@ -78,7 +76,6 @@ export class DataComponent implements OnInit {
     this.dataService.calculateHttp(dataClass).subscribe(
       response => {
         this.dataReturnCalculate = response;
-        console.log(this.dataReturnCalculate);
         this.readItens();
       },
       error => {

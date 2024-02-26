@@ -1,25 +1,20 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Data } from '../intefaces/data.interface';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.css']
 })
-export class ModalComponent implements OnInit {
+export class ModalComponent {
 
   @Input() data: any;
-  
+  @Input() isHighlighted: boolean = false;
   @Output() confirmed: EventEmitter<void> = new EventEmitter();
   @Output() cancel: EventEmitter<void> = new EventEmitter();
-  
-  // @Input() modalContent: string;
-  @Input() isHighlighted: boolean = false;
-
-
 
   confirmAction() {
     this.confirmed.emit();
+    alert('O empréstimo foi realizado com sucesso! Veja abaixo o que você contratou.');
     this.toggleHighlight();
   }
 
@@ -31,17 +26,5 @@ export class ModalComponent implements OnInit {
   toggleHighlight() {
     this.isHighlighted = false;
   }
-
-
-  constructor() { }
-
-  ngOnInit(): void {
-    console.log("modal");
-    console.log(this.data);
-  }
-
-  // onCloseModal() {
-  //   this.closeModal.emit();
-  // }
 
 }
