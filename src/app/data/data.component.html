@@ -1,0 +1,67 @@
+<div>
+
+    <h4 class="mb-3">Simulador</h4>
+
+    <form [formGroup]="dataForm" (ngSubmit)="calculateItem()" class="needs-validation">
+        <div class="row g-3 mb-3">
+            <div class="col-sm-8">
+                <label for="labelOne" class="form-label">Nome:</label>
+                <input type="text" class="form-control" id="labelOne" formControlName="name">
+                <div class="text-danger" *ngIf="dataForm.get('name').invalid && dataForm.get('name').touched">
+                    Nome é obrigatório.
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <label for="labelTwo" class="form-label">Valor:</label>
+                <input type="text" class="form-control" id="labelTwo" formControlName="value">
+                <div class="text-danger" *ngIf="dataForm.get('value').invalid && dataForm.get('value').touched">
+                    Valor é obrigatório
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <label for="labelThree" class="form-label">Parcelas:</label>
+                <input type="text" class="form-control" id="labelThree" formControlName="instalments">
+                <div class="text-danger"
+                    *ngIf="dataForm.get('instalments').invalid && dataForm.get('instalments').touched">
+                    Parcela é obrigatório.
+                </div>
+            </div>
+            <div class="col-sm-8 gap-3">
+                <button type="submit" class="w-20 btn btn-primary btn-lg" (click)="openModal()">Continuar para
+                    confirmação</button>
+                <button type="button" (click)="clearForm()" class="w-20 btn btn-default btn-lg">Limpar
+                    formulário</button>
+            </div>
+        </div>
+    </form>
+    <br>
+
+    <div *ngIf="dataItems.length > 0" class="row gap-3 mt-3">
+        
+        <hr>
+        <h4 class="mb-3">Simulador</h4>
+
+        <ng-container *ngFor="let item of dataItems; let i = index">
+            <div class="card" style="width: 25rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{item.name}}</h5>
+                    <hr>
+                    <dl class="row">
+                        <dt class="col-sm-6">Valor</dt><dd class="col-sm-6">{{item.value | currencyFormat}}</dd>
+                        <dt class="col-sm-6">Parcelas</dt><dd class="col-sm-6">{{item.instalments}}x</dd>
+                        <dt class="col-sm-6">Juros</dt><dd class="col-sm-6">{{item.fees}}%</dd>
+                        <dt class="col-sm-6">Valor parcela</dt><dd class="col-sm-6">{{item.valueInstalment | currencyFormat}}</dd>
+                        <dt class="col-sm-6">Valor total</dt><dd class="col-sm-6">{{item.total | currencyFormat}}</dd>
+                    </dl>
+                    <hr>
+                    <p class="mb-2 text-body-secondary" style="font-size: 10px;">{{item.id}}</p>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+
+
+    <app-modal [data]="dataReturnCalculate"  (cancel)="onCancelAction()"
+        [isHighlighted]="isHighlighted" (confirmed)="onConfirmAction()"></app-modal>
+
+</div>

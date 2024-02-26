@@ -1,0 +1,38 @@
+<div class="modal modal-sheet position-absolute bg-body-secondary p-4 py-md-5" style="--bs-bg-opacity: .7;"
+    id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+    [ngClass]="{'d-block ': isHighlighted}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content rounded-4 shadow">
+            <div class="modal-body p-5">
+                <h2 class="fw-bold mb-5">Confirmação</h2>
+
+
+                <ng-container *ngIf="data">
+                    <h5 class="card-title">{{data.name}}</h5>
+                    <hr>
+                    <dl class="row">
+                        <dt class="col-sm-6">Valor</dt>
+                        <dd class="col-sm-6">{{data.value | currencyFormat}}</dd>
+                        <dt class="col-sm-6">Parcelas</dt>
+                        <dd class="col-sm-6">{{data.instalments}}x</dd>
+                        <dt class="col-sm-6">Juros</dt>
+                        <dd class="col-sm-6">{{data.fees}}%</dd>
+                        <dt class="col-sm-6">Valor parcela</dt>
+                        <dd class="col-sm-6">{{data.valueInstalment | currencyFormat}}</dd>
+                        <dt class="col-sm-6">Valor total</dt>
+                        <dd class="col-sm-6">{{data.total | currencyFormat}}</dd>
+                    </dl>
+                </ng-container>
+
+                <hr>
+
+                <div class="row gap-3">
+                    <button type="button" class="btn btn-lg btn-primary mt-5 w-100"
+                        (click)="confirmAction()">Confirmar</button>
+                    <button type="button" class="btn btn-lg btn-default mt-1 w-100" data-bs-dismiss="modal"
+                        (click)="cancelAction()">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
