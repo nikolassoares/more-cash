@@ -13,7 +13,8 @@
             </div>
             <div class="col-sm-2">
                 <label for="labelTwo" class="form-label">Valor:</label>
-                <input type="text" class="form-control" id="labelTwo" formControlName="value">
+                <input type="text" class="form-control" id="labelTwo" formControlName="value" currencyMask  
+                [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" >
                 <div class="text-danger" *ngIf="dataForm.get('value').invalid && dataForm.get('value').touched">
                     Valor é obrigatório
                 </div>

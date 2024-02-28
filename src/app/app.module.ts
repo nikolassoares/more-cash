@@ -9,6 +9,7 @@ import { ModalComponent } from './modal/modal.component';
 import { MockBackendService } from './services/mock-backend.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CurrencyFormatPipe } from './pipes/currency-format.pipe';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { CurrencyFormatPipe } from './pipes/currency-format.pipe';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    CurrencyMaskModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: MockBackendService, multi: true },
